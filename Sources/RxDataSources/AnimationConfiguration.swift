@@ -25,5 +25,9 @@
             self.reloadAnimation = reloadAnimation
             self.deleteAnimation = deleteAnimation
         }
+        
+        public var isDisableAnimation: Bool {
+            return insertAnimation == .none && reloadAnimation == .none && deleteAnimation == .none
+        }
     }
 #endif

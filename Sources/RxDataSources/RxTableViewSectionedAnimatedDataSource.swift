@@ -107,7 +107,13 @@ open class RxTableViewSectionedAnimatedDataSource<Section: AnimatableSectionMode
                                 tableView.batchUpdates(difference, animationConfiguration: dataSource.animationConfiguration)
                             }
                             if #available(iOS 11, tvOS 11, *) {
-                                tableView.performBatchUpdates(updateBlock, completion: nil)
+                                if dataSource.animationConfiguration.isDisableAnimation {
+                                    UIView.performWithoutAnimation {
+                                        tableView.performBatchUpdates(updateBlock, completion: nil)
+                                    }
+                                } else {
+                                    tableView.performBatchUpdates(updateBlock, completion: nil)
+                                }
                             } else {
                                 tableView.beginUpdates()
                                 updateBlock()

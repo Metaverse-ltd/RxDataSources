@@ -80,9 +80,7 @@ open class RxCollectionViewSectionedAnimatedDataSource<Section: AnimatableSectio
                                 dataSource.setSections(difference.finalSections)
                                 collectionView.batchUpdates(difference, animationConfiguration: dataSource.animationConfiguration)
                             }
-                            if dataSource.animationConfiguration.deleteAnimation == .none &&
-                                dataSource.animationConfiguration.insertAnimation == .none &&
-                                dataSource.animationConfiguration.reloadAnimation == .none {
+                            if dataSource.animationConfiguration.isDisableAnimation {
                                 UIView.performWithoutAnimation {
                                     collectionView.performBatchUpdates(updateBlock, completion: nil)
                                 }
